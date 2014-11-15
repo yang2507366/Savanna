@@ -1,0 +1,16 @@
+//
+// Prefix header for all source files of the 'Savanna' target in the 'Savanna' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
+
+//#define PRINT_OBJECT_COUNT
+
+#ifdef DEBUG
+//#define DEBUGLOG(...) NSLog(__VA_ARGS__)
+#else
+#define DEBUGLOG(...)
+#endif
