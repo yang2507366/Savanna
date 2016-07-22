@@ -48,7 +48,7 @@ end
 
 -- common language utils
 function toLuaBool(b)
-    return b == "YES";
+    return b == "YES" or b == "true";
 end
 
 function isObjCObject(objId)

@@ -62,7 +62,7 @@
             NSString *tmpParam = [parameters objectAtIndex:j];
             const unsigned char ctype = *[methodSignature getArgumentTypeAtIndex:i];
             void *argumentData = NULL;
-            if(ctype == 'c'){//char
+            if(ctype == 'c' || ctype == 'B'){//char
                 if(tmpParam.length != 0){
                     char c = [tmpParam characterAtIndex:0];
                     
@@ -111,9 +111,6 @@
             }else if(ctype == 'd'){//double
                 double d = [tmpParam doubleValue];
                 argumentData = &d;
-            }else if(ctype == 'B'){//bool
-                int b = [tmpParam intValue];
-                argumentData = &b;
             }else if(ctype == 'v'){//void
                 
             }else if(ctype == '*'){//char *
