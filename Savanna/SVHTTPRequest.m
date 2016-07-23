@@ -133,9 +133,9 @@
 - (void)httpRequestDidError:(ASIHTTPRequest *)req
 {
     self.recyclable = YES;
-    NSError *error = [NSError errorWithDomain:NSStringFromClass(self.class)
-                                         code:-1
-                                     userInfo:[NSDictionary dictionaryWithObject:@"网络连接错误" forKey:NSLocalizedDescriptionKey]];
+    
+    NSError *error = req.error;
+    
     if(self.callback){
         self.callback(nil, error);
     }

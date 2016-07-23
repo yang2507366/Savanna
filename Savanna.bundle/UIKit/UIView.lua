@@ -127,7 +127,7 @@ function UIView:setHidden(hidden)
 end
 
 function UIView:hidden()
-    local hidden = runtime::invokeMethod(self:id(), "hidden");
+    local hidden = runtime::invokeMethod(self:id(), "isHidden");
     return toLuaBool(hidden);
 end
 

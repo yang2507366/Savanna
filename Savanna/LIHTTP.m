@@ -17,6 +17,7 @@
 #import "ASIWebPageRequest.h"
 #import "ASIDownloadCache.h"
 
+#define KHTTPRequestEncodingASCII    @"ASCII"
 #define KHTTPRequestEncodingUTF8    @"UTF8"
 #define kHTTPRequestEncodingGBK     @"GBK"
 
@@ -66,11 +67,18 @@
 + (NSString *)dataToString:(NSData *)data encoding:(NSString *)encoding
 {
     CFStringEncoding cfEncoding = kCFStringEncodingUTF8;
-    if([encoding isEqualToString:kHTTPRequestEncodingGBK]){
+    NSString *upperEncoding = [encoding uppercaseString];
+    if([upperEncoding isEqualToString:kHTTPRequestEncodingGBK]){
         cfEncoding = kCFStringEncodingGB_18030_2000;
     }
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(cfEncoding);
-    return [[[NSString alloc] initWithData:data encoding:enc] autorelease];
+    if ([upperEncoding isEqualToString:KHTTPRequestEncodingASCII]) {
+        enc = NSASCIIStringEncoding;
+    }
+    
+    NSString *string = [[[NSString alloc] initWithData:data encoding:enc] autorelease];
+    
+    return string;
 }
 
 - (void)start
